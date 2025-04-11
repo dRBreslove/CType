@@ -1,0 +1,16 @@
+{
+  "name": "ctype-nw",
+  "version": "1.0.0",
+  "main": "public/index.html",
+  "window": {
+    "title": "CType NW.js App",
+    "width": 1024,
+    "height": 768,
+    "min_width": 800,
+    "min_height": 600,
+    "position": "center"
+  },
+  "webkit": {
+    "plugin": true
+  }
+} 

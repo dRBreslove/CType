@@ -45,7 +45,7 @@ return or__5002__auto__;
 return devtools.hints.ajax_reader;
 }
 })();
-return (reader.cljs$core$IFn$_invoke$arity$1 ? reader.cljs$core$IFn$_invoke$arity$1(where) : reader.call(null, where));
+return (reader.cljs$core$IFn$_invoke$arity$1 ? reader.cljs$core$IFn$_invoke$arity$1(where) : reader.call(null,where));
 });
 devtools.hints.get_line = (function devtools$hints$get_line(lines,line_number){
 return (lines[(line_number - (1))]);
@@ -57,7 +57,7 @@ return content;
 var prev_line_number = (line_number - (1));
 var prev_line = devtools.hints.get_line(lines,prev_line_number);
 var new_content = [cljs.core.str.cljs$core$IFn$_invoke$arity$1(prev_line),"\n",cljs.core.str.cljs$core$IFn$_invoke$arity$1(content)].join('');
-return (devtools.hints.extend_content.cljs$core$IFn$_invoke$arity$4 ? devtools.hints.extend_content.cljs$core$IFn$_invoke$arity$4(new_content,lines,prev_line_number,min_length) : devtools.hints.extend_content.call(null, new_content,lines,prev_line_number,min_length));
+return (devtools.hints.extend_content.cljs$core$IFn$_invoke$arity$4 ? devtools.hints.extend_content.cljs$core$IFn$_invoke$arity$4(new_content,lines,prev_line_number,min_length) : devtools.hints.extend_content.call(null,new_content,lines,prev_line_number,min_length));
 }
 });
 devtools.hints.mark_call_closed_at_column = (function devtools$hints$mark_call_closed_at_column(line,column){
@@ -95,27 +95,27 @@ devtools.hints.error_object_sense = (function devtools$hints$error_object_sense(
 try{var native_stack_trace = error.stack;
 var stack_trace = devtools.hints.parse_stacktrace(native_stack_trace);
 var top_item = cljs.core.second(stack_trace);
-var map__8787 = top_item;
-var map__8787__$1 = cljs.core.__destructure_map(map__8787);
-var file = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__8787__$1,new cljs.core.Keyword(null,"file","file",-1269645878));
-var line = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__8787__$1,new cljs.core.Keyword(null,"line","line",212345235));
-var column = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__8787__$1,new cljs.core.Keyword(null,"column","column",2078222095));
+var map__12849 = top_item;
+var map__12849__$1 = cljs.core.__destructure_map(map__12849);
+var file = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__12849__$1,new cljs.core.Keyword(null,"file","file",-1269645878));
+var line = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__12849__$1,new cljs.core.Keyword(null,"line","line",212345235));
+var column = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__12849__$1,new cljs.core.Keyword(null,"column","column",2078222095));
 return devtools.hints.make_sense_of_the_error(error.message,file,line,column);
-}catch (e8786){var _e = e8786;
+}catch (e12848){var _e = e12848;
 return false;
 }});
 devtools.hints.type_error_to_string = (function devtools$hints$type_error_to_string(self){
-var temp__5802__auto___8849 = devtools.hints.get_processed_errors_BANG_();
-if(cljs.core.truth_(temp__5802__auto___8849)){
-var seen_errors_8850 = temp__5802__auto___8849;
-if(cljs.core.truth_(seen_errors_8850.has(self))){
+var temp__5802__auto___12926 = devtools.hints.get_processed_errors_BANG_();
+if(cljs.core.truth_(temp__5802__auto___12926)){
+var seen_errors_12927 = temp__5802__auto___12926;
+if(cljs.core.truth_(seen_errors_12927.has(self))){
 } else {
-seen_errors_8850.add(self);
+seen_errors_12927.add(self);
 
-var temp__5804__auto___8851 = devtools.hints.error_object_sense(self);
-if(cljs.core.truth_(temp__5804__auto___8851)){
-var sense_8852 = temp__5804__auto___8851;
-(self.message = [cljs.core.str.cljs$core$IFn$_invoke$arity$1(self.message),", a sanity hint:\n",cljs.core.str.cljs$core$IFn$_invoke$arity$1(sense_8852)].join(''));
+var temp__5804__auto___12928 = devtools.hints.error_object_sense(self);
+if(cljs.core.truth_(temp__5804__auto___12928)){
+var sense_12929 = temp__5804__auto___12928;
+(self.message = [cljs.core.str.cljs$core$IFn$_invoke$arity$1(self.message),", a sanity hint:\n",cljs.core.str.cljs$core$IFn$_invoke$arity$1(sense_12929)].join(''));
 } else {
 }
 }
@@ -125,12 +125,12 @@ var sense_8852 = temp__5804__auto___8851;
 return devtools.hints._STAR_original_type_error_prototype_to_string_STAR_.call(self);
 });
 devtools.hints.global_error_handler = (function devtools$hints$global_error_handler(message,url,line,column,error){
-var res = (cljs.core.truth_(devtools.hints._STAR_original_global_error_handler_STAR_)?devtools.hints._STAR_original_global_error_handler_STAR_.call(null, message,url,line,column,error):null);
+var res = (cljs.core.truth_(devtools.hints._STAR_original_global_error_handler_STAR_)?devtools.hints._STAR_original_global_error_handler_STAR_.call(null,message,url,line,column,error):null);
 if(cljs.core.not(res)){
 var temp__5804__auto__ = devtools.hints.error_object_sense(error);
 if(cljs.core.truth_(temp__5804__auto__)){
 var sense = temp__5804__auto__;
-devtools.context.get_console.call(null, ).info("A sanity hint for incoming uncaught error:\n",sense);
+devtools.context.get_console.call(null).info("A sanity hint for incoming uncaught error:\n",sense);
 
 return false;
 } else {
@@ -141,9 +141,9 @@ return true;
 }
 });
 devtools.hints.install_type_error_enhancer = (function devtools$hints$install_type_error_enhancer(){
-(devtools.hints._STAR_original_global_error_handler_STAR_ = devtools.context.get_root.call(null, ).onerror);
+(devtools.hints._STAR_original_global_error_handler_STAR_ = devtools.context.get_root.call(null).onerror);
 
-(devtools.context.get_root.call(null, ).onerror = devtools.hints.global_error_handler);
+(devtools.context.get_root.call(null).onerror = devtools.hints.global_error_handler);
 
 var prototype = TypeError.prototype;
 (devtools.hints._STAR_original_type_error_prototype_to_string_STAR_ = prototype.toString);
@@ -176,7 +176,7 @@ if(cljs.core.truth_(devtools.hints._STAR_original_type_error_prototype_to_string
 throw (new Error("Assert failed: *original-type-error-prototype-to-string*"));
 }
 
-(devtools.context.get_root.call(null, ).onerror = devtools.hints._STAR_original_global_error_handler_STAR_);
+(devtools.context.get_root.call(null).onerror = devtools.hints._STAR_original_global_error_handler_STAR_);
 
 var prototype = TypeError.prototype;
 return (prototype.toString = devtools.hints._STAR_original_type_error_prototype_to_string_STAR_);

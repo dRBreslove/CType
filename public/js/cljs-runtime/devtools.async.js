@@ -26,12 +26,12 @@ throw e;
 }),(0));
 });
 devtools.async.promise_based_set_immediate = (function devtools$async$promise_based_set_immediate(callback){
-var o__8442__auto___11005 = (function (){var o__8442__auto___11005 = (function (){var o__8442__auto___11005 = Promise;
-return (o__8442__auto___11005["resolve"]).call(o__8442__auto___11005);
+var o__12640__auto___14909 = (function (){var o__12640__auto___14909 = (function (){var o__12640__auto___14909 = Promise;
+return (o__12640__auto___14909["resolve"]).call(o__12640__auto___14909);
 })();
-return (o__8442__auto___11005["then"]).call(o__8442__auto___11005,callback);
+return (o__12640__auto___14909["then"]).call(o__12640__auto___14909,callback);
 })();
-(o__8442__auto___11005["catch"]).call(o__8442__auto___11005,devtools.async.rethrow_outside_promise);
+(o__12640__auto___14909["catch"]).call(o__12640__auto___14909,devtools.async.rethrow_outside_promise);
 
 return null;
 });
@@ -52,21 +52,21 @@ return null;
 } else {
 (devtools.async._STAR_installed_STAR_ = true);
 
-var G__10911_11011 = Error;
-var target__8471__auto___11012 = G__10911_11011;
-if(cljs.core.truth_(target__8471__auto___11012)){
+var G__14901_14913 = Error;
+var target__12656__auto___14914 = G__14901_14913;
+if(cljs.core.truth_(target__12656__auto___14914)){
 } else {
-throw (new Error(["Assert failed: ",["unable to locate object path ",null," in ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__10911_11011)].join(''),"\n","target__8471__auto__"].join('')));
+throw (new Error(["Assert failed: ",["unable to locate object path ",null," in ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__14901_14913)].join(''),"\n","target__12656__auto__"].join('')));
 }
 
-(target__8471__auto___11012["stackTraceLimit"] = Infinity);
+(target__12656__auto___14914["stackTraceLimit"] = Infinity);
 
 
 devtools.async.install_async_set_immediate_BANG_();
 
-if(devtools.async.needed_QMARK_.call(null, )){
+if(devtools.async.needed_QMARK_.call(null)){
 } else {
-devtools.context.get_console.call(null, ).info(devtools.async.get_not_needed_message.call(null, ));
+devtools.context.get_console.call(null).info(devtools.async.get_not_needed_message.call(null));
 }
 
 return true;

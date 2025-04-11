@@ -1,0 +1,68 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title CType: ClojureScript to JavaScript Transformer
+    style.
+      body {
+        font-family: 'Comic Sans MS', cursive;
+        margin: 0;
+        padding: 20px;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      h1 {
+        color: #2c3e50;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      }
+      .magic-box {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        padding: 20px;
+        margin: 20px 0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      }
+      .code-window {
+        background: #2d2d2d;
+        color: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        font-family: monospace;
+        margin: 10px 0;
+      }
+      .magic-button {
+        background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: transform 0.2s;
+      }
+      .magic-button:hover {
+        transform: scale(1.05);
+      }
+  body
+    .container
+      h1 CType: ClojureScript to JavaScript Transformer
+      .magic-box
+        h2 Transform ClojureScript to JavaScript ✨
+        .code-window
+          pre (defn greet [name]
+    (str "Hello, " name "!"))
+        .magic-button Transform
+      .magic-box
+        h2 Transform JavaScript to ClojureScript 🎯
+        .code-window
+          pre function greet(name) {
+    return `Hello, ${name}!`;
+  }
+        .magic-button Transform
+    script(src="/js/main.js") 

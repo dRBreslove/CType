@@ -1,28 +1,28 @@
 goog.provide('devtools.core');
 devtools.core.is_feature_available_QMARK_ = (function devtools$core$is_feature_available_QMARK_(feature){
-var G__11894 = feature;
-var G__11894__$1 = (((G__11894 instanceof cljs.core.Keyword))?G__11894.fqn:null);
-switch (G__11894__$1) {
+var G__15939 = feature;
+var G__15939__$1 = (((G__15939 instanceof cljs.core.Keyword))?G__15939.fqn:null);
+switch (G__15939__$1) {
 case "formatters":
-return devtools.formatters.available_QMARK_.call(null, );
+return devtools.formatters.available_QMARK_.call(null);
 
 break;
 case "hints":
-return devtools.hints.available_QMARK_.call(null, );
+return devtools.hints.available_QMARK_.call(null);
 
 break;
 case "async":
-return devtools.async.available_QMARK_.call(null, );
+return devtools.async.available_QMARK_.call(null);
 
 break;
 default:
-throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__11894__$1)].join('')));
+throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__15939__$1)].join('')));
 
 }
 });
 devtools.core.available_QMARK_ = (function devtools$core$available_QMARK_(var_args){
-var G__11896 = arguments.length;
-switch (G__11896) {
+var G__15942 = arguments.length;
+switch (G__15942) {
 case 0:
 return devtools.core.available_QMARK_.cljs$core$IFn$_invoke$arity$0();
 
@@ -53,9 +53,9 @@ return cljs.core.every_QMARK_(devtools.core.is_feature_available_QMARK_,features
 (devtools.core.available_QMARK_.cljs$lang$maxFixedArity = 1);
 
 devtools.core.is_feature_installed_QMARK_ = (function devtools$core$is_feature_installed_QMARK_(feature){
-var G__11897 = feature;
-var G__11897__$1 = (((G__11897 instanceof cljs.core.Keyword))?G__11897.fqn:null);
-switch (G__11897__$1) {
+var G__15943 = feature;
+var G__15943__$1 = (((G__15943 instanceof cljs.core.Keyword))?G__15943.fqn:null);
+switch (G__15943__$1) {
 case "formatters":
 return devtools.formatters.installed_QMARK_();
 
@@ -69,13 +69,13 @@ return devtools.async.installed_QMARK_();
 
 break;
 default:
-throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__11897__$1)].join('')));
+throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__15943__$1)].join('')));
 
 }
 });
 devtools.core.installed_QMARK_ = (function devtools$core$installed_QMARK_(var_args){
-var G__11900 = arguments.length;
-switch (G__11900) {
+var G__15949 = arguments.length;
+switch (G__15949) {
 case 0:
 return devtools.core.installed_QMARK_.cljs$core$IFn$_invoke$arity$0();
 
@@ -106,8 +106,8 @@ return cljs.core.every_QMARK_(devtools.core.is_feature_installed_QMARK_,features
 (devtools.core.installed_QMARK_.cljs$lang$maxFixedArity = 1);
 
 devtools.core.install_BANG_ = (function devtools$core$install_BANG_(var_args){
-var G__11902 = arguments.length;
-switch (G__11902) {
+var G__15957 = arguments.length;
+switch (G__15957) {
 case 0:
 return devtools.core.install_BANG_.cljs$core$IFn$_invoke$arity$0();
 

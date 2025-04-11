@@ -1,19 +1,30 @@
-import globals from 'globals';
 import tsParser from '@typescript-eslint/parser';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
+import js from '@eslint/js';
 
 export default [
+  js.configs.recommended,
   {
-    files: ['src/ts/**/*.ts'],
+    ignores: ['dist/**', 'node_modules/**', '*.config.js']
+  },
+  {
+    files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
       parser: tsParser,
       parserOptions: {
-        ecmaVersion: 2021,
-        sourceType: 'module'
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true
+        }
       },
       globals: {
-        ...globals.browser,
-        ...globals.es2021
+        console: 'readonly',
+        Buffer: 'readonly',
+        require: 'readonly',
+        module: 'readonly',
+        __dirname: 'readonly',
+        process: 'readonly'
       }
     },
     plugins: {
@@ -21,12 +32,31 @@ export default [
     },
     rules: {
       ...tsPlugin.configs.recommended.rules,
-      'indent': ['error', 2],
-      'linebreak-style': ['error', 'unix'],
-      'quotes': ['error', 'single'],
-      'semi': ['error', 'always'],
-      'no-unused-vars': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unused-vars': ['error', { 
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_'
+      }],
       'no-console': 'off'
+    }
+  },
+  {
+    files: ['**/*.js'],
+    languageOptions: {
+      globals: {
+        console: 'readonly',
+        Buffer: 'readonly',
+        require: 'readonly',
+        module: 'readonly',
+        __dirname: 'readonly',
+        process: 'readonly',
+        describe: 'readonly',
+        it: 'readonly',
+        before: 'readonly',
+        after: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly'
+      }
     }
   }
 ]; 

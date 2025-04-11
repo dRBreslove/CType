@@ -1,28 +1,69 @@
 {:source-paths ["src/cljs"]
  :dependencies [[binaryage/devtools "1.0.6"]
                 [org.clojure/clojurescript "1.11.60"]
-                [reagent "1.2.0"]]
+                [reagent "1.2.0"]
+                [org.clojure/core.async "1.6.673"]
+                [thheller/shadow-cljs "2.28.23"]]
  :dev-http {8080 "public"}
- :builds {:main {:target :browser
-                 :output-dir "public/js"
-                 :asset-path "js"
-                 :modules {:main {:init-fn ctype.client/init}}
-                 :devtools {:after-load ctype.client/init}}
-          :server {:target :node-script
-                   :main ctype.server/-main
-                   :output-to "dist/server.cjs"
-                   :output-format :commonjs}
-          :test {:target :browser-test
-                 :test-dir "resources/public/js/test"
-                 :devtools {:http-port 8021
-                           :http-root "resources/public/js/test"}}
-          :release {:target :browser
-                   :output-dir "release/js"
-                   :asset-path "js"
-                   :modules {:main {:init-fn ctype.client/init}}
-                   :optimizations :advanced}
-          :hello {:target :node-script
-                  :main hello.core/-main
-                  :output-to "dist/hello.cjs"
-                  :output-format :commonjs}}
- :test-commands {"unit" ["karma" "start" "--single-run"]}} 
+ :builds
+ {:app
+  {:target :browser
+   :output-dir "public/js"
+   :asset-path "/js"
+   :modules {:main {:entries [ctype.core]}}
+   :devtools {:http-root "public"
+              :http-port 8080
+              :http-host "localhost"
+              :load-failed-fn (fn [url]
+                               (js/console.error "Failed to load:" url))
+              :after-load-fn (fn []
+                              (js/console.log "Reload complete!"))}}
+  
+  :server
+  {:target :node-script
+   :main ctype.server/-main
+   :output-to "dist/server.js"
+   :output-dir "dist/server"
+   :devtools {:after-load ctype.server/-main}
+   :compiler-options {:optimizations :simple
+                    :infer-externs true}}
+  
+  :release
+  {:target :browser
+   :output-dir "dist"
+   :asset-path "js"
+   :modules {:main {:init-fn ctype.core/init}}
+   :optimizations :advanced}
+  
+  :node
+  {:target :node-script
+   :output-to "dist/index.js"
+   :output-format :commonjs}
+  
+  :demo
+  {:target :node-script
+   :main ctype.demo/-main
+   :output-to "dist/demo.js"
+   :output-format :commonjs}
+  
+  :decompiler
+  {:target :node-script
+   :main ctype.decompiler/-main
+   :output-to "dist/decompiler.cjs"
+   :output-format :commonjs}
+  
+  :transformer
+  {:target :node-script
+   :main ctype.transformer/-main
+   :output-to "dist/transformer.cjs"
+   :output-format :commonjs}
+  
+  :test
+  {:target :node-test
+   :test-dir "resources/public/js/test"
+   :output-to "public/js/test.js"
+   :autorun true}}
+ 
+ :test-commands
+ {"unit" ["karma" "start" "--single-run"]
+  "nw" ["nw" "." "--test"]}} 

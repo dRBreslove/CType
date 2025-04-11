@@ -1,15 +1,27 @@
-module.exports = function (config) {
+export default function(config) {
   config.set({
-    browsers: ['Chrome'],
-    basePath: 'target',
-    files: ['test.js'],
-    frameworks: ['cljs-test'],
-    plugins: ['karma-cljs-test', 'karma-chrome-launcher'],
+    frameworks: ['jasmine'],
+    files: [
+      'src/**/*.ts',
+      'test/**/*.ts'
+    ],
+    preprocessors: {
+      '**/*.ts': ['typescript']
+    },
+    typescriptPreprocessor: {
+      options: {
+        sourceMap: true,
+        target: 'ES5',
+        module: 'commonjs',
+        noImplicitAny: true
+      }
+    },
+    reporters: ['progress'],
+    port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    client: {
-      args: ['shadow.test.karma.init'],
-    },
-    singleRun: true
+    autoWatch: true,
+    browsers: ['Chrome'],
+    singleRun: false
   });
 }; 

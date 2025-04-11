@@ -1,14 +1,20 @@
-# CType
+# CType: ClojureScript to JavaScript Transformer and JavaScript to ClojureScript Reformer
 
-CType is a modern ClojureScript to JavaScript compiler that enables seamless integration between ClojureScript and JavaScript/TypeScript codebases. It provides type safety and interoperability while maintaining the expressive power of ClojureScript.
+A powerful bidirectional code transformation tool that enables seamless conversion between ClojureScript and JavaScript. CType provides robust transformation capabilities, allowing you to convert ClojureScript code to JavaScript and reform JavaScript back into ClojureScript, while maintaining code quality and functionality.
 
 ## Features
 
-- Compile ClojureScript code to optimized JavaScript
-- TypeScript type definitions for ClojureScript functions
-- Seamless interop between ClojureScript and JavaScript/TypeScript
+- Transform ClojureScript code to optimized JavaScript
+- Reform JavaScript code back to ClojureScript
+- Type-safe function calls between both languages
+- Automatic type inference and declaration generation
 - Built-in development tools and hot reloading
-- Comprehensive test suite support (ClojureScript and TypeScript)
+- Comprehensive test suite (ClojureScript, TypeScript, and NW.js)
+- WebRTC camera integration support
+- NW.js desktop application support
+- WebSocket server for real-time communication
+- Pug template engine integration
+- HTTPS support with SSL certificates
 
 ## Installation
 
@@ -18,74 +24,152 @@ npm install ctype
 
 ## Usage
 
-### Basic Compilation
+### Server Setup
+
+CType includes a built-in server with WebSocket support:
 
 ```bash
-# Compile ClojureScript to JavaScript
-npm run build
+# Start the server
+npm run start:server
 
-# Watch mode with hot reloading
-npm run dev
-
-# Production build with optimizations
-npm run release
+# Start both server and development environment
+npm run start:all
 ```
 
-### Hello World Demo
+The server runs on port 8080 by default and includes:
+- WebSocket support for real-time communication
+- Pug template rendering
+- Static file serving
+- HTTPS support with SSL certificates
 
-The project includes a simple Hello World example demonstrating basic ClojureScript compilation:
+### WebSocket Testing
 
 ```bash
-# Build and run the Hello World example
-npm run hello
+# Run WebSocket tests
+npm run test:websocket
 ```
 
-Example ClojureScript code:
+The WebSocket server runs on port 8081 for testing purposes.
+
+### Code Transformation
+
+CType's primary purpose is to transform code between ClojureScript and JavaScript:
+
+```bash
+# Transform ClojureScript to JavaScript
+npm run transformer:build
+node dist/transformer.cjs <input-file> <output-file> js
+
+# Reform JavaScript to ClojureScript
+node dist/transformer.cjs <input-file> <output-file> cljs
+```
+
+### Basic Functions
+
+```typescript
+// TypeScript/JavaScript
+import { typed_add, typed_greet } from 'ctype/core';
+
+// Add numbers with type safety
+const sum = typed_add(2, 3); // Returns 5
+
+// Create typed greetings
+const greeting = typed_greet("World"); // Returns "Hello, World!"
+```
+
 ```clojure
-;; src/cljs/hello/core.cljs
-(ns hello.core
-  (:require [cljs.nodejs :as nodejs]))
+;; ClojureScript
+(ns your-app.core
+  (:require [ctype.core :as core]))
 
-(defn hello []
-  (println "Hello from ClojureScript!"))
+;; Add numbers
+(core/typed-add 2 3) ;; Returns 5
 
-(defn -main []
-  (hello))
+;; Create greetings
+(core/typed-greet "World") ;; Returns "Hello, World!"
 ```
 
-## Development
+### Development
 
 ```bash
-# Install dependencies
-npm install
-
 # Start development server with hot reloading
 npm run dev
 
+# Build for production
+npm run build
+
 # Run tests
-npm run test      # ClojureScript tests
-npm run test:ts   # TypeScript tests
-npm run test:watch # Watch mode for tests
+npm test                # Run all tests
+npm run test:watch     # Run tests in watch mode
+npm run test:nw        # Run NW.js integration tests
+npm run test:nw:robot  # Run NW.js robot tests
+```
+
+### Desktop Application Support
+
+CType supports building desktop applications using NW.js:
+
+```bash
+# Start NW.js application
+npm run start:nw
+
+# Build and start with background processes
+npm run start:nw:background
 ```
 
 ## Project Structure
 
 ```
-.
+ctype/
 ├── src/
-│   ├── cljs/       # ClojureScript source files
-│   │   └── hello/  # Hello World example
-│   └── ts/         # TypeScript type definitions and tests
-├── dist/           # Compiled JavaScript output
-└── release/        # Production-ready builds
+│   ├── cljs/              # ClojureScript source files
+│   │   └── ctype/
+│   │       ├── core.cljs       # Core functionality
+│   │       ├── transformer.cljs # Code transformation
+│   │       ├── decompiler.cljs # Code decompilation
+│   │       ├── webrtc.cljs     # WebRTC integration
+│   │       └── server.cljs     # Server implementation
+│   └── ts/                # TypeScript source files
+│       ├── __tests__/     # TypeScript tests
+│       ├── __mocks__/     # Test mocks
+│       └── ctype/         # Type declarations
+├── public/                # Static assets
+│   └── templates/         # Pug templates
+├── certificates/          # SSL certificates
+├── dist/                  # Compiled output
+└── test/                  # Additional tests
+    ├── websocket.test.js  # WebSocket tests
+    └── websocket-server.js # WebSocket test server
 ```
 
-## Configuration
+## Testing
 
-- `shadow-cljs.edn` - ClojureScript compiler configuration
-- `tsconfig.json` - TypeScript configuration
-- `package.json` - NPM package configuration and scripts
-- `karma.conf.js` - Test runner configuration
+CType uses a comprehensive testing approach:
+
+- **TypeScript Tests**: Using Jest for testing TypeScript integrations
+- **ClojureScript Tests**: Using ClojureScript's test framework
+- **NW.js Tests**: Integration tests for desktop features
+- **Robot Tests**: Automated UI testing using RobotJS
+- **WebSocket Tests**: Real-time communication testing
+
+### Running Tests
+
+```bash
+# Run all tests
+npm test
+
+# Run TypeScript tests in watch mode
+npm run test:watch
+
+# Run NW.js integration tests
+npm run test:nw
+
+# Run NW.js tests with RobotJS
+npm run test:nw:robot
+
+# Run WebSocket tests
+npm run test:websocket
+```
 
 ## Contributing
 
@@ -95,6 +179,22 @@ npm run test:watch # Watch mode for tests
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+### Development Setup
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Generate SSL certificates:
+   ```bash
+   mkdir -p certificates && openssl req -x509 -newkey rsa:4096 -keyout certificates/key.pem -out certificates/cert.pem -days 365 -nodes -subj "/CN=localhost"
+   ```
+4. Start development server:
+   ```bash
+   npm run dev
+   ```
+
 ## License
 
-MIT License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
